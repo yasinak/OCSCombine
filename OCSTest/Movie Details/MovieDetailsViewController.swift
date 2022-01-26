@@ -33,9 +33,10 @@ class MovieDetailsViewController: UIViewController {
             .sink(receiveCompletion: { completion in
                 print(completion)
             }, receiveValue: { [weak self] movieCellModel in
-                self?.viewModel = MovieDetailsViewModel(movieCellModel: movieCellModel!)
+                guard let movieCellModel = movieCellModel else { return }
+                self?.viewModel = MovieDetailsViewModel(movieCellModel: movieCellModel)
                 self?.screenBindings()
-                MovieDetailsServices.fetchDetails(detaillink: movieCellModel?.detaillink ?? "", completion: {
+                MovieDetailsServices.fetchDetails(detaillink: movieCellModel.detaillink, completion: {
                     result in
                     switch result {
                     case .success(let movieDetails):
