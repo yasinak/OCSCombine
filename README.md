@@ -14,7 +14,7 @@ The project used a MVVM architecture, with Combine framework.
 I choose this architecture because it is sufficient for the need of this little project, and because with Combine, it is well formated.
 
 ## Test
-A lot a of test is missing.
+It will be good to add some unit test more.
 
 ## Improvement
 We can add behavior when the search fetch 0 result.
