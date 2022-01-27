@@ -20,10 +20,10 @@ final class MoviesViewModel {
     var moviesModel: MoviesModel?
     
     init() {
-        setBindings()
+        searchQueryBinding()
     }
     
-    private func setBindings() {
+    private func searchQueryBinding() {
         $searchQuery
             .receive(on: RunLoop.main)
             .removeDuplicates()

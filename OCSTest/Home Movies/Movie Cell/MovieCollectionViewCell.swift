@@ -15,6 +15,17 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "MovieCollectionViewCell"
     
+    var movieCellModel: MovieCellModel? {
+        didSet {
+            titleLabel.text = movieCellModel?.title
+            subtitleLabel.text = movieCellModel?.subtitle
+            if let imageUrl = movieCellModel?.imageUrl, let url = URL(string: URLs.imageForMovie(url: imageUrl)) {
+                movieImageView.loadImage(fromURL: url)
+            }
+        }
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

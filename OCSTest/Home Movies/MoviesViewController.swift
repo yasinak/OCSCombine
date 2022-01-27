@@ -27,13 +27,13 @@ class MoviesViewController: UIViewController {
         configureSearchController()
         configureCollectionView()
         
-        setSearchBinding()
-        setUpdateBinding()
+        searchQueryBinding()
+        updateResultBinding()
     }
     
     //  MARK: bindings
     //  launch a search, when $searchQuery is updated in the searchBar
-    private func setSearchBinding() {
+    private func searchQueryBinding() {
         $searchQuery
             .receive(on: RunLoop.main)
             .removeDuplicates()
@@ -43,7 +43,7 @@ class MoviesViewController: UIViewController {
     }
     
     //  get and manage the result of a search
-    private func setUpdateBinding() {
+    private func updateResultBinding() {
         viewModel.updateResult
             .receive(on: RunLoop.main)
             .sink { completion in
@@ -117,13 +117,7 @@ extension MoviesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell {
             let movieCellModel = viewModel.moviesModel?.movieCellModels[indexPath.item]
-            cell.titleLabel.text = movieCellModel?.title
-            cell.subtitleLabel.text = movieCellModel?.subtitle
-            if let imageUrl = movieCellModel?.imageUrl {
-                if let url = URL(string: URLs.imageForMovie(url: imageUrl)) {
-                    cell.movieImageView.loadImage(fromURL: url)
-                }
-            }
+            cell.movieCellModel = movieCellModel
             return cell
         }
         return UICollectionViewCell()
