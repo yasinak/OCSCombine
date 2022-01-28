@@ -42,19 +42,28 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9Je-BN-auL"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun résultat trouvé" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8n-cD-x4D">
+                                <rect key="frame" x="109.5" y="436.5" width="195.5" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XXb-gt-dNv" secondAttribute="bottom" id="LeE-zk-lHz"/>
                             <constraint firstItem="XXb-gt-dNv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PHc-y6-g9b"/>
+                            <constraint firstItem="V8n-cD-x4D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jOf-VY-cDL"/>
                             <constraint firstItem="XXb-gt-dNv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ma8-e1-RZc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XXb-gt-dNv" secondAttribute="trailing" id="qIV-V3-eER"/>
+                            <constraint firstItem="V8n-cD-x4D" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yaL-Gc-VV5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4Ca-G9-hYd"/>
                     <connections>
                         <outlet property="moviesCollectionView" destination="XXb-gt-dNv" id="ZVt-xO-JC8"/>
+                        <outlet property="noResultLabel" destination="V8n-cD-x4D" id="apw-7c-gas"/>
                         <segue destination="gaM-3H-gr2" kind="show" identifier="gotoMovieDetailViewController" id="0CE-09-NYS"/>
                     </connections>
                 </viewController>

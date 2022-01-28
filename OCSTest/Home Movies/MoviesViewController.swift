@@ -11,6 +11,7 @@ import Combine
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
+    @IBOutlet weak var noResultLabel: UILabel!
     
     let searchController = UISearchController()
     
@@ -53,22 +54,20 @@ class MoviesViewController: UIViewController {
             case .failure(let error):
                 print("Erreur reçue: \(error.localizedDescription)")
             }
-        } receiveValue: { [weak self] updated in
-            if updated {
-                self?.displayMovies()
-            } else {
-                self?.displayNoResult()
-            }
+        } receiveValue: { [weak self] _ in
+            self?.displayMovies()
         }.store(in: &subscriptions)
     }
     
     private func displayMovies() {
+        noResultLabel.isHidden = (self.viewModel.moviesModel?.count ?? 0) > 0
         moviesCollectionView.reloadData()
     }
     
     private func displayNoResult() {
         //  TODO: add a behavior when we have 0 result for a search
     }
+
     
     //  MARK: screen configuration
     
@@ -94,7 +93,7 @@ class MoviesViewController: UIViewController {
            let destinationViewController = segue.destination as? MovieDetailsViewController,
            let indexPath = sender as? IndexPath
         {
-            destinationViewController.movieCellModel=viewModel.moviesModel?.movieCellModels[indexPath.item]
+            destinationViewController.movieCellModel = viewModel.moviesModel?.movieCellModels[indexPath.item]
         }
     }
     
